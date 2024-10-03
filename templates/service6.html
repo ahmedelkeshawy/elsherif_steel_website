@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Shreif Group - Iron Industries</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <style>
+        /* Full width video container */
+        .video-container-fullwidth {
+            width: 100vw; /* Full viewport width */
+            height: 700px; /* Adjust the height to desired value */
+            overflow: hidden;
+            margin-bottom: 30px; /* Add space between video and first card */
+        }
+
+        .video-container-fullwidth video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video covers the entire container without distortion */
+        }
+
+        /* Centering and resizing the service cards */
+        .services-card-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 40px;
+        }
+
+        /* First card - Larger and centered */
+        .first-service-card {
+            width: 1000px; /* Increase the width */
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .first-service-card .service-image {
+            width: 100%;
+            height: 400px; /* Larger height for the image */
+            object-fit: cover;
+        }
+
+        /* Second and third service cards - Centered */
+        .service-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .service-container .service {
+            width: 300px; /* Keep size normal */
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .service-container .service img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        /* Button styles */
+        .more-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .more-button:hover {
+            background-color: #ff4040;
+        }
+        .no-underline {
+        text-decoration: none;
+    }
+
+    .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .text-section {
+            flex-basis: 50%;
+        }
+
+        .text-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .text-section hr {
+            border: 1px solid #333;
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .text-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+    
+  
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column; /* Stack items vertically on smaller screens */
+            align-items: center; /* Center align items */
+        }
+
+        .text-section {
+            flex-basis: 100%; /* Full width for text section */
+            margin-bottom: 20px; /* Space between sections */
+        }
+
+        .image-section {
+            flex-basis: 100%; /* Full width for image section */
+        }
+
+        .text-section h1 {
+            font-size: 2rem; /* Adjust heading size */
+        }
+
+        .text-section p {
+            font-size: 1rem; /* Adjust paragraph size */
+        }
+    }
+  /* Base styles */
+  .contact-info {
+            background-color: #737373;
+            display: flex;
+            flex-direction: row; /* Default to row for larger screens */
+            align-items: center;
+            padding: 10px;
+        }
+
+        .contact-info a {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; /* Space between email and icons */
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            margin-left: auto; /* Push social icons to the right */
+        }
+
+        .social-icons a {
+            margin: 0 5px; /* Space between icons */
+        }
+
+        /* Media Query for mobile devices */
+        @media (max-width: 600px) {
+            .contact-info {
+                flex-direction: column; /* Stack elements vertically on mobile */
+                align-items: flex-start; /* Align items to the start */
+            }
+
+            .contact-info a {
+                margin-bottom: 10px; /* Space below email */
+            }
+
+            .social-icons {
+                display: flex; /* Keep social icons in a row */
+                justify-content: center; /* Center icons */
+                margin-top: 10px; /* Space above icons */
+                width: 100%; /* Full width for centering */
+            }
+        }
+
+
+          /* Navbar styles */
+          nav {
+            background-color: white;
+            animation: fadeIn 0.5s ease-in-out;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            color: #850000;
+        }
+
+        .logo img {
+            height: 70px;
+            width: 100px;
+        }
+
+        .nav-items {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .nav-items a {
+            color: #850000;
+            font-size: x-large;
+            text-decoration: none;
+            padding: 10px;
+            position: relative;
+        }
+
+        .nav-items .dropdown {
+            position: relative;
+        }
+
+        .nav-items .dropdown-content {
+            position: absolute;
+            background-color: #850000;
+            color: white;
+            min-width: 160px;
+            z-index: 1;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .nav-items .dropdown-content a {
+            text-decoration: none;
+            display: block;
+            padding: 8px;
+            color: white;
+        }
+
+       
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .nav-items {
+                flex-direction: column; /* Stack items vertically on mobile */
+                align-items: flex-start; /* Align items to the start */
+                width: 100%; /* Full width */
+                padding: 10px 0; /* Padding for mobile */
+            }
+
+            .nav-items a {
+                width: 100%; /* Full width links */
+                text-align: left; /* Align text to the left */
+            }
+
+            .dropdown-content {
+                position: relative; /* Position the dropdown content */
+                max-height: none; /* Allow dropdown to show */
+            }
+        }
+
+</style>
+</head>
+<body style="background-image: url('../images/back.svg');">
+    <div class="contact-info">
+        <a href="mailto:alsherif.group2000@gmail.com" title="email">
+            <img src="../images/email.webp" alt="email" style="width: 60px; height: 50px; margin-right: 5px;"> <!-- Email Icon -->
+            <span style="font-size: large;">alsherif.group2000@gmail.com</span>
+        </a>
+        
+        <div class="social-icons">
+            <a href="tel:+2001119589121" title="Call Us">
+                <img src="../images/phone.png" alt="Phone" style="width: 65px; height: 55px;"> <!-- Phone Icon -->
+            </a>
+            <a href="https://wa.me/2001000772174" title="WhatsApp">
+                <img src="../images/whatsapp.png" alt="WhatsApp" style="width: 65px; height: 60px;"> <!-- WhatsApp Icon -->
+            </a>
+            <a href="https://www.facebook.com/yourpage" title="Facebook">
+                <img src="../images/facebook.png" alt="Facebook" style="width: 65px; height: 55px;"> <!-- Facebook Icon -->
+            </a>
+            <a href="https://www.youtube.com/yourchannel" title="YouTube">
+                <img src="../images/youtube.png" alt="YouTube" style="width: 65px; height: 60px;"> <!-- YouTube Icon -->
+            </a>
+            <a href="https://maps.app.goo.gl/6C612CEgrTtMazme9" title="Location">
+                <img src="../images/location.png" alt="Location" style="width: 65px; height: 55px;"> <!-- Location Icon -->
+            </a>
+        </div>
+    </div>
+    
+    
+    
+   <!-- Navbar -->
+<nav style="background-color: white; animation: fadeIn 0.5s ease-in-out; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+    <div class="logo">
+        <img src="../images/logo.png" alt="Logo" style="height: 70px; width: 100px;"> <!-- Add your logo image here -->
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" style="display: flex; flex-direction: column; cursor: pointer;">
+        <div style="width: 25px; height: 3px; background-color: #850000; margin: 4px; transition: 0.4s;"></div>
+        <div style="width: 25px; height: 3px; background-color: #850000; margin: 4px; transition: 0.4s;"></div>
+        <div style="width: 25px; height: 3px; background-color: #850000; margin: 4px; transition: 0.4s;"></div>
+    </div>
+    <ul class="nav-items" id="nav-items" style="list-style-type: none; padding: 0; display: flex; gap: 20px; position: relative;">
+        <li>
+            <a href="../templates/index.html" data-en="Main" data-ar="الرئيسية" style="color: #850000; font-size: x-large; text-decoration: none; padding: 10px;">Main</a>
+        </li>
+        <li>
+            <a href="../templates/who are we.html" data-en="Who Are We" data-ar="من نحن" style="color: #850000; font-size: x-large; text-decoration: none; padding: 10px;">Who Are We</a>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-btn" onclick="toggleDropdown(event, 'services-dropdown')" style="color: #850000; font-size: x-large; text-decoration: none; padding: 10px;" data-en="Services" data-ar="الخدمات">Services
+                <span class="dropdown-arrow">▼</span>
+            </a>
+            <div id="services-dropdown" class="dropdown-content" style="display: none; background-color: #850000; color: white; position: absolute; z-index: 1;">
+                <a href="../templates/service1.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="CNC Surface Grinding" data-ar="طحن السطح باستخدام الحاسب الآلي"
+                >CNC Surface Grinding</a>
+                <hr>
+                <a href="../templates/service2.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="Wire Cutting" data-ar="قطع الأسلاك"
+                >Wire Cutting</a>
+                <hr>
+                <a href="../templates/service3.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="CNC Lathes" data-ar="مخرطات CNC"
+                >CNC Lathes</a>
+                <hr>
+                <a href="../templates/service4.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="Laser Engraving and Writing" data-ar="النقش والكتابة بالليزر"
+                >Laser Engraving and Writing</a>
+                <hr>
+                <a href="../templates/service5.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="CNC Milling" data-ar="الطحن باستخدام الحاسب الآلي"
+                >CNC Milling</a>
+                <hr>
+                <a href="../templates/service6.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="Spark Machine (EDM)" data-ar="آلة الشرارة (EDM)"
+                >Spark Machine (EDM)</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-btn" onclick="toggleDropdown(event, 'products-dropdown')" style="color: #850000; font-size: x-large; text-decoration: none; padding: 10px;" data-en="products" data-ar="المنتجات">Products
+                <span class="dropdown-arrow">▼</span>
+            </a>
+            <div id="products-dropdown" class="dropdown-content" style="display: none; background-color: #850000; color: white; position: absolute; z-index: 1;">
+                <a href="../templates/molds.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="Molds" data-ar="قوالب"
+                >Molds</a>
+                <hr>
+                <a href="../templates/knives.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="Knives" data-ar="سكاكين"
+                >Knives</a>
+                <hr>
+                <a href="../templates/gears.html" style="text-decoration: none; display: block; padding: 8px; color: white;" 
+                onMouseOver="this.style.color='#850000'; this.style.backgroundColor='white';" 
+                onMouseOut="this.style.color='white'; this.style.backgroundColor='#850000';"
+                data-en="Gears" data-ar="تروس"
+                >Gears</a>
+            </div>
+        </li>
+        <li>
+            <button id="lang-toggle" style="font-size: x-large; color: #850000; background: none; border: none; cursor: pointer;">AR</button>
+        </li>
+    </ul>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" style="display: none; background-color: rgba(255,255,255,0.5) ; color: #850000; position: absolute; top: 80px; left: 0; width: 100%; z-index: 999; padding: 10px 0;">
+    <ul style="list-style-type: none; padding: 0;">
+        <li>
+            <a href="../templates/index.html" data-en="Main" data-ar="الرئيسية" style="color: #850000; font-size: large; text-decoration: none; padding: 10px; display: block;">Main</a>
+        </li>
+        <li>
+            <a href="../templates/who are we.html" data-en="Who Are We" data-ar="من نحن" style="color: #850000; font-size: large; text-decoration: none; padding: 10px; display: block;">Who Are We</a>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-btn" onclick="toggleDropdown(event, 'mobile-services-dropdown')" style="color: #850000; font-size: large; text-decoration: none; padding: 10px; display: block;" data-en="Services" data-ar="الخدمات">Services
+                <span class="dropdown-arrow">▼</span>
+            </a>
+            <div id="mobile-services-dropdown" class="dropdown-content" style="display: none; background-color: rgba(255,255,255,0.5) ; color: #850000; padding-left: 20px;">
+                <a href="../templates/service1.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">CNC Surface Grinding</a>
+                <a href="../templates/service2.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">Wire Cutting</a>
+                <a href="../templates/service3.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">CNC Lathes</a>
+                <a href="../templates/service4.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">Laser Engraving and Writing</a>
+                <a href="../templates/service5.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">CNC Milling</a>
+                <a href="../templates/service6.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">Spark Machine (EDM)</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-btn" onclick="toggleDropdown(event, 'mobile-products-dropdown')" style=" color: #850000; font-size: large; text-decoration: none; padding: 10px; display: block;" data-en="products" data-ar="المنتجات">Products
+                <span class="dropdown-arrow">▼</span>
+            </a>
+            <div id="mobile-products-dropdown" class="dropdown-content" style="display: none; background-color: rgba(255,255,255,0.5) ; color: white; padding-left: 20px;">
+                <a href="../templates/molds.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">Molds</a>
+                <a href="../templates/knives.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">Knives</a>
+                <a href="../templates/gears.html" style="text-decoration: none; display: block; padding: 8px; color: #850000;">Gears</a>
+            </div>
+        </li>
+        <li>
+            <button id="lang-toggle1" style="font-size: large; color: #850000; background: none; border: none; cursor: pointer;">AR</button>
+        </li>
+    </ul>
+</div>
+    
+    <section class="video-section">
+    <video autoplay muted loop>
+        <source src="../images/Mechanical Logo Intro -CONTACT FOR YOUR INTRO(1080P_HD).mp4" type="video/mp4"> <!-- Add your video here -->
+    </video>
+    <div class="video-overlay">
+        <h1>
+            <!-- English Version -->
+            <span class="english" style="color: #850000; font-size: 4rem;">ALSHERIF</span>
+            <br>
+            <span class="english" style="font-size: 1.5rem;">For METAL WORKS & ENGINEERING SUPPLIES</span>
+            
+            <!-- Arabic Version -->
+            <span class="arabic" dir="rtl" style="display: none;">
+                <span style="color: #850000; font-size: 4rem;">الشريف</span>
+                <br>
+                <span style="font-size: 1.5rem;">لتشغيل المعادن والأعمال الهندسية</span>
+            </span>
+        </h1>
+        <hr style="border: none; height: 4px; background-color: white; width: 40%; margin: 10px auto;">
+    
+    </div>
+    </section>
+
+    
+
+   <!-- Services Section -->
+   <section class="services-card-section">
+    <div class="container">
+        <!-- Left Title and Definition Section -->
+        <div class="text-section">
+            <h1 style="color: #850000; text-align: center;" data-en="Spark Machine (EDM)" data-ar="فريزة سي إن سي">Spark Machine (EDM)</h1>
+            <hr style="width: 415px; margin-left: 0; " >
+            <p data-en="  Our spark machining (EDM) services provide accurate and reliable metal processing for hard materials, ensuring precision in every detail" 
+                data-ar="نقدم خدمات الحفر والتشكيل باستخدام ماكينات سبارك للحصول على نتائج دقيقة وموثوقة في معالجة المعادن الصلبة" >
+                Our spark machining (EDM) services provide accurate and reliable metal processing for hard materials, ensuring precision in every detail
+                 </p>
+        </div>
+
+        <!-- Right Image Section -->
+        <div class="image-section">
+            <img src="../images/spark.png" alt="Spark Machine (EDM)" style="height: 550px; width: 350px;" > <!-- Replace with the actual image of the company -->
+        </div>
+    </div>
+</section>
+
+    <!-- Other Services Section -->
+    <section class="services-section" style="position: relative;">
+        <h2 data-en="Services" data-ar="الخدمات" style="text-align: center;">Other Services</h2>
+        <p data-en="These advanced production capabilities work together to enable Al Sharif Metals to provide high-quality products designed specifically for our valued customers." 
+           data-ar="تعمل هذه القدرات الإنتاجية المتقدمة معًا لتمكين شركة الشريف للمعادن من تقديم منتجات عالية الجودة مصممة خصيصًا لعملائنا الكرام" style="text-align: center;">
+           These advanced production capabilities work together to enable Al Sharif Metals to provide high-quality products designed specifically for our valued customers.
+        </p>
+
+        <!-- Service Cards Container -->
+        <div class="service-container " >
+            <div class="service">
+               <a href="../templates/service1.html"> <img src="../images/cnc.png" alt="Service 1" class="service-image" style="height: 250px;"></a>
+                <h3 data-en="CNC Surface Grinding" data-ar="تجليخ السطح سي إن سي">CNC Surface Grinding</h3>
+                <p data-en="We provide high-precision surface grinding using CNC machines to ensure the best finish for metal and industrial parts." 
+                   data-ar="نوفر دقة عالية في تجليخ الأسطح باستخدام ماكينات سي إن سي لضمان أفضل تشطيب للقطع المعدنية والصناعية">
+                   We provide high-precision surface grinding using CNC machines to ensure the best finish for metal and industrial parts.
+                </p>
+            </div>
+
+            <div class="service">
+              <a href="../templates/service2.html"><img src="../images/cutting wire.jpg" alt="Service 2" class="service-image" style="height: 250px;"></a>
+                <h3 data-en="Wire Cutting" data-ar="قطع السلك">Wire Cutting</h3>
+                <p data-en="We perform wire cutting (EDM) to achieve intricate and highly precise cuts for complex shapes and fine details." 
+                   data-ar="نقوم بقطع المعادن باستخدام تقنيات القطع بالسلك (EDM) لضمان دقة متناهية للقطع المعقدة والتفاصيل الدقيقة">
+                   We perform wire cutting (EDM) to achieve intricate and highly precise cuts for complex shapes and fine details.
+                </p>
+            </div>
+        </div>
+        <a href="../templates/services.html" class="no-underline">
+            <button class="more-button" data-en="More Services" data-ar="المزيد من الخدمات" style="background-color: #850000;">More Services</button>
+
+        </a>
+
+    </section>
+   
+    <div class="fixed-icons">
+        <a href="tel:+2001278592101" class="icon-phone">
+            <img src="../images/phone.png" alt="Phone Icon" class="icon-img" style="background-color: #850000;">
+        </a>
+        <a href="https://wa.me/2001000772174" class="icon-whatsapp">
+            <img src="../images/whatsapp2.png" alt="WhatsApp Icon" class="icon-img"  style=" background-color: #850000; ">
+        </a>
+    </div>
+        <!-- Footer Section -->
+    <!-- Footer Section -->
+    <!-- Footer Section -->
+<footer style="background-color: #333; color: white; padding: 20px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+
+        <!-- Left Part -->
+        <div style="flex: 1; margin: 0 10px; text-align: center;">
+            <h3 data-en="Always be in touch" data-ar="كن دائماً على تواصل" style="font-size: 1.5rem;">Always be in touch</h3>
+            <hr style="border: 1px solid white; margin: 10px auto; width: 50%;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div style="display: flex; align-items: center; margin: 10px 0;">
+                    <a href="tel:+2001119589121" title="Call Us">
+                        <img src="../images/phone.png" alt="Phone" style="width: 60px; height: 50px; margin-right: 10px;">
+                    </a>
+                    <label data-en="Phone" data-ar="الهاتف">Phone</label>
+                </div>
+                <div style="display: flex; align-items: center; margin: 10px 0;">
+                    <a href="mailto:alsherif.group2000@gmail.com" title="Email Us">
+                        <img src="../images/email.webp" alt="Email" style="width: 85px; height: 75px; margin-right: 10px;">
+                    </a>
+                    <label data-en="Email" data-ar="الايميل">Email</label>
+                </div>
+                <div style="display: flex; align-items: center; margin: 10px 0;">
+                    <a href="https://maps.app.goo.gl/6C612CEgrTtMazme9" title="Location">
+                        <img src="../images/location.png" alt="Location" style="width: 60px; height: 50px; margin-right: 10px;">
+                    </a>
+                    <label data-en="Location" data-ar="الموقع">Location</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Part -->
+        <div style="flex: 1; margin: 0 10px; text-align: center;">
+            <h3 data-en="Important Links" data-ar="روابط مهمة" style="font-size: 1.5rem;">Important Links</h3>
+            <hr style="border: 1px solid white; margin: 10px auto; width: 50%;">
+            <ul style="list-style-type: none; padding: 0;">
+                <li style="margin: 5px 0;"><a href="../templates/index.html" data-en="Main" data-ar="الرئيسية" style="color: white; text-decoration: none;">Main</a></li>
+                <li style="margin: 5px 0;"><a href="../templates/who are we.html" data-en="Who Are We" data-ar="من نحن" style="color: white; text-decoration: none;">Who Are We</a></li>
+                <li style="margin: 5px 0;"><a href="../templates/services.html" data-en="Our Services" data-ar="خدماتنا" style="color: white; text-decoration: none;">Our Services</a></li>
+                <li style="margin: 5px 0;"><a href="../templates/products.html" data-en="Our Products" data-ar="منتجاتنا" style="color: white; text-decoration: none;">Our Products</a></li>
+            </ul>
+        </div>
+
+        <!-- Right Part -->
+        <div style="flex: 1; margin: 0 10px; text-align: center;">
+            <img src="../images/logo1.png" alt="Logo" style="height: 40%; width: 40%;">
+            <p data-en="We are a leading company in metal operating and forming, providing high-quality services and products." 
+               data-ar="نحن شركة رائدة في تشغيل وتشكيل المعادن، نقدم خدمات ومنتجات عالية الجودة" style="font-size: 0.9rem;">
+                We are a leading company in metal operating and forming, providing high-quality services and products.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <a href="#">
+                    <img src="../images/facebook.png" alt="Facebook" style="width: 60px; height: 50px;">
+                </a>
+                <a href="https://wa.me/2001000772174">
+                    <img src="../images/whatsapp.png" alt="WhatsApp" style="width: 60px; height: 50px;">
+                </a>
+                <a href="#">
+                    <img src="../images/youtube.png" alt="YouTube" style="width: 60px; height: 50px;">
+                </a>
+            </div>
+        </div>
+    </div>
+    
+<!-- Scroll to Top Image Icon -->
+<div style="position: fixed; bottom: 150px; left: 120px;  transform: translateX(-50%); height: 50px;">
+    <img src="../images/top arrow.png" alt="Scroll to Top" 
+         onclick="scrollToTop()" 
+         style="cursor: pointer; width: 60px; height: auto; transition: transform 0.3s; margin-left: -130px;" 
+         onmouseover="this.style.transform='scale(1.1)'" 
+         onmouseout="this.style.transform='scale(1)'">
+</div>
+
+
+
+</footer>
+        
+        <script src="../static/js/script.js"></script>
+
+</body>
+</html>
